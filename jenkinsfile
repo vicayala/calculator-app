@@ -1,7 +1,7 @@
 pipeline{
     agent any
     stages{
-        stage('Checkout'){   "latest pull from github"
+        stage('Checkout'){  /* "latest pull from github"*/
             steps{
                 checkout scm   /*"source control managment, uses the URL of the repo"*/
             }
