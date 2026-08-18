@@ -1,0 +1,25 @@
+pipeline{
+    agent any
+    stages{
+        stage('Checkout'){   "latest pull from github"
+            steps{
+                checkout scm   "source control managment, uses the URL of the repo"
+            }
+        }
+        stage('Show Files'){
+            steps {
+                bat 'dir' "bat is for batch, in windows, linux or mac uses sh. list the files jenkins pulled"
+            }
+        }
+        stage ('Test'){  "test is where the real value is"
+            steps {
+                bat 'python -m unittest test_calculator.py -v' "the same used in the freestyle jenkins. if fails it will turn this stage red"
+            }
+        }
+        stage ('Deploy'){ "in a real case, this mmight be deployed to a server building a Docker image or a deployment script"
+            steps {
+                bat 'xcopy /Y calculator.py dist\\' "use of xcopy to copy the file into a dust folder (just to simulate)"
+            }
+        }
+    }
+}
